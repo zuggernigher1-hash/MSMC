@@ -12,6 +12,7 @@ from minecraft.authentication import AuthenticationToken, Profile
 from minecraft.networking.connection import Connection
 from minecraft.networking.packets import clientbound
 from minecraft.exceptions import LoginDisconnect
+from addons.inbox import inboxmail
 
 logo = Fore.GREEN+'''
      ███▄ ▄███▓  ██████  ███▄ ▄███▓ ▄████▄  
@@ -354,6 +355,7 @@ def validmail(email, password):
     checked+=1
     with open(f"results/{fname}/Valid_Mail.txt", 'a') as file: file.write(f"{email}:{password}\n")
     if screen == "'2'": print(Fore.LIGHTMAGENTA_EX+f"Valid Mail: {email}:{password}")
+      inboxmail(email, password)
 
 def capture_mc(access_token, session, email, password, type):
     global retries
